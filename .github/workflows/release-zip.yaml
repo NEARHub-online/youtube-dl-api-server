@@ -6,14 +6,14 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Compress action step
-        uses: a7ul/tar-action@v1.1.0
-        id: compress
-        with:
-          command: c
-          cwd: ./
-          files: |
-            ./*
-          outPath: release.tar.gz
+      uses: a7ul/tar-action@v1.1.0
+      id: compress
+      with:
+        command: c
+        cwd: ./
+        files: |
+          ./*
+        outPath: release.tar.gz
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "release.tar.gz"
