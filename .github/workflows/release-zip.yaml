@@ -5,9 +5,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Archive Release
-      uses: thedoctor0/zip-release@0.7.1
+    - name: Compress action step
+        uses: a7ul/tar-action@v1.1.0
+        id: compress
+        with:
+          command: c
+          cwd: ./
+          files: |
+            ./*
+          outPath: release.tar.gz
+    - uses: ncipollo/release-action@v1
       with:
-        type: 'zip'
-        filename: 'release.zip'
-        exclusions: '*.git* /habitat/*'
+        artifacts: "release.tar.gz"
